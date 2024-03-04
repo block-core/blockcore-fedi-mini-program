@@ -23,7 +23,6 @@
     <div id="output" class="logs"></div>
 
     <script>
-        import { requestProvider } from "webln";
         let webln = null;
 
         const btn = document.getElementById('action');
@@ -41,13 +40,13 @@
             document.body.appendChild(newDiv);
 
             try {
-                webln = await requestProvider();
+                webln = await WebLN.requestProvider();
                 var newDiv = document.createElement('div');
                 newDiv.textContent = 'WebLN initialized!';
                 document.body.appendChild(newDiv);
             } catch (err) {
                 var newDiv = document.createElement('div');
-                newDiv.textContent = 'Error' + err.message;
+                newDiv.textContent = 'Error: ' + err.message;
                 document.body.appendChild(newDiv);
             }
         });
