@@ -19,6 +19,7 @@
 </head>
 
 <body>
+    <div>Version 0.2</div>
     <button id="action">Trigger</button>
     <div id="output" class="logs"></div>
 
@@ -49,12 +50,14 @@
                 newDiv.textContent = 'Error: ' + err.message;
                 document.body.appendChild(newDiv);
             }
+
+            if (webln) {
+                const info = await webln.getInfo();
+                var newDiv = document.createElement('div');
+                newDiv.textContent = JSON.stringify(info);
+                document.body.appendChild(newDiv);
+            }
         });
-
-        if (webln) {
-            // Call webln functions
-        }
-
     </script>
 </body>
 
