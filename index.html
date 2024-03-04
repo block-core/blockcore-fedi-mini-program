@@ -73,9 +73,10 @@
 
             if (webln) {
                 const info = await webln.getInfo();
-                var newDiv = document.createElement('div');
-                newDiv.textContent = JSON.stringify(info);
-                div.appendChild(newDiv);
+                console.log(info);
+                // var newDiv = document.createElement('div');
+                // newDiv.textContent = JSON.stringify(info);
+                // div.appendChild(newDiv);
             }
         });
     </script>
