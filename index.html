@@ -8,9 +8,23 @@
     <title>Blockcore: Fedi App</title>
     <link rel="icon" href="favicon.png" type="image/png">
     <style>
-        .output {
-            border: 2px solid gray;
-            white-space: pre;
+        html, body {
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            padding: 20px;
+        }
+
+        .logs {
+            border: 1px solid silver;
+            padding: 20px;
+            margin-top: 10px;
+            box-sizing: border-box;
+            white-space: normal;
+            word-wrap: break-word;
+            width: 100%;
         }
     </style>
     <script src="https://unpkg.com/webln@0.3.2/dist/webln.min.js"
@@ -19,8 +33,8 @@
 </head>
 
 <body>
-    <div>Version 0.2</div>
-    <button id="action">Trigger</button>
+    <div>Version 0.3</div>
+    <button id="action">Make Invoice</button>
     <div id="output" class="logs"></div>
 
     <script>
@@ -29,33 +43,39 @@
         const btn = document.getElementById('action');
         const div = document.getElementById('output');
 
-        btn.addEventListener('click', function () {
-            var newDiv = document.createElement('div');
-            newDiv.textContent = 'Triggered';
-            div.appendChild(newDiv);
+        console.log(div);
+
+        btn.addEventListener('click', async () => {
+            if (webln) {
+                const info = await webln.makeInvoice(1000);
+                var newDiv = document.createElement('div');
+                newDiv.textContent = JSON.stringify(info);
+                div.appendChild(newDiv);
+            }
+
         });
 
         document.addEventListener('DOMContentLoaded', async () => {
             var newDiv = document.createElement('div');
             newDiv.textContent = 'Content loaded';
-            document.body.appendChild(newDiv);
+            div.appendChild(newDiv);
 
             try {
                 webln = await WebLN.requestProvider();
                 var newDiv = document.createElement('div');
                 newDiv.textContent = 'WebLN initialized!';
-                document.body.appendChild(newDiv);
+                div.appendChild(newDiv);
             } catch (err) {
                 var newDiv = document.createElement('div');
                 newDiv.textContent = 'Error: ' + err.message;
-                document.body.appendChild(newDiv);
+                div.appendChild(newDiv);
             }
 
             if (webln) {
                 const info = await webln.getInfo();
                 var newDiv = document.createElement('div');
                 newDiv.textContent = JSON.stringify(info);
-                document.body.appendChild(newDiv);
+                div.appendChild(newDiv);
             }
         });
     </script>
