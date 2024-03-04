@@ -13,6 +13,9 @@
             white-space: pre;
         }
     </style>
+    <script src="https://unpkg.com/webln@0.3.2/dist/webln.min.js"
+        integrity="sha384-MpjpvOQqXz9nCoLUS/sR0bhLwGYuNPMOBN50jsqhnqAzDq0GiOI0u6oC5fHitzI2"
+        crossorigin="anonymous"></script>
 </head>
 
 <body>
@@ -20,6 +23,9 @@
     <div id="output" class="logs"></div>
 
     <script>
+        import { requestProvider } from "webln";
+        let webln = null;
+
         const btn = document.getElementById('action');
         const div = document.getElementById('output');
 
@@ -35,7 +41,7 @@
             document.body.appendChild(newDiv);
 
             try {
-                const webln = await WebLN.requestProvider();
+                webln = await requestProvider();
                 var newDiv = document.createElement('div');
                 newDiv.textContent = 'WebLN initialized!';
                 document.body.appendChild(newDiv);
@@ -45,6 +51,10 @@
                 document.body.appendChild(newDiv);
             }
         });
+
+        if (webln) {
+            // Call webln functions
+        }
 
     </script>
 </body>
