@@ -28,6 +28,23 @@
             div.appendChild(newDiv);
         });
 
+        document.addEventListener('DOMContentLoaded', async () => {
+            var newDiv = document.createElement('div');
+            newDiv.textContent = 'Content loaded';
+            document.body.appendChild(newDiv);
+
+            try {
+                const webln = await WebLN.requestProvider();
+                var newDiv = document.createElement('div');
+                newDiv.textContent = 'WebLN initialized!';
+                document.body.appendChild(newDiv);
+            } catch (err) {
+                var newDiv = document.createElement('div');
+                newDiv.textContent = 'Error' + err.message;
+                document.body.appendChild(newDiv);
+            }
+        });
+
     </script>
 </body>
 
