@@ -9,6 +9,7 @@
     <style>
         .output {
             border: 2px solid gray;
+            white-space: pre;
         }
     </style>
 </head>
@@ -22,7 +23,9 @@
         const div = document.getElementById('output');
 
         btn.addEventListener('click', function () {
-            div.appendChild(document.createTextNode('Triggered\n'));
+            var newDiv = document.createElement('div');
+            newDiv.textContent = 'Triggered';
+            div.appendChild(newDiv);
         });
 
     </script>
